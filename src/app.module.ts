@@ -1,16 +1,17 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
+import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
-import { MongooseModule } from '@nestjs/mongoose';
-import { UserController } from './user/user.controller';
-
-
+import { ItemModule } from './Item/Item.module';
 
 @Module({
-  imports: [UserModule, AuthModule, MongooseModule.forRoot('mongodb://127.0.0.1:27017/restaurant-app')],
-  controllers: [AppController, UserController],
+  imports: [
+    MongooseModule.forRoot('mongodb://127.0.0.1:27017/myDatabase'),
+    UserModule,
+    AuthModule,
+    ItemModule
+  ],
+  controllers: [],
   providers: [],
-  exports: [],
 })
-export class AppModule {}
+export class AppModule {} 
